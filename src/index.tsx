@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
+import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
@@ -33,7 +33,6 @@ const store = createStore(
 store.client.start();
 
 ReactDOM.render(
-
 	<React.StrictMode>
     <Provider store={store}>
 	    <App />
