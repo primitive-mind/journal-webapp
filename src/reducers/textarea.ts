@@ -9,11 +9,20 @@ const initDoc = initDocWithText('actorId', '')
 //   syncTimingMs: 0,
 // }
 
+type actionType = {
+  type: string,
+  payload: {}
+}
+
+type automergeDocType = {
+  text: Automerge.Text,
+}
+
 const initialState = {
   text: ''
 }
 
-export default function textarea(state = initialState, action) {
+export default function textarea(state = initialState, action: actionType) {
   console.log('reducers.textarea')
   if (action.type === 'text/update') {
 
@@ -27,9 +36,11 @@ export default function textarea(state = initialState, action) {
   }
 }
 
-function initDocWithText(actorId, text) {
-  return Automerge.change(Automerge.init(actorId), doc => {
+function initDocWithText(actorId: string, text: string) {
+  return Automerge.change(Automerge.init(actorId), insertText))
+  
+  function insertText(doc: automergeDocType) {
     doc.text = new Automerge.Text(text)
-    return doc.text.insertAt(0)
-  })
+    return doc.text.insertAt?(0)
+  }
 }
